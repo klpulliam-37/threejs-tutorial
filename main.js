@@ -104,6 +104,35 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('keyup', (event) => {
     keysPressed[event.key] = false;
 });
+
+function updateCamera() {
+    let speed = 0.1; // Adjust the speed as needed
+
+    if (keysPressed['w']) {
+        // Move forward
+        camera.translateZ(-speed);
+    }
+    if (keysPressed['s']) {
+        // Move backward
+        camera.translateZ(speed);
+    }
+    if (keysPressed['a']) {
+        // Move left
+        camera.translateX(-speed);
+    }
+    if (keysPressed['d']) {
+        // Move right
+        camera.translateX(speed);
+    }
+    if (keysPressed['e']) {
+        // Move up
+        camera.translateY(speed);
+    }
+    if (keysPressed['q']) {
+        // Move down
+        camera.translateY(-speed);
+    }
+}
 //================================================================================//
 
 //======================================== animate function ========================================//
@@ -113,6 +142,7 @@ document.addEventListener('keyup', (event) => {
 // Because of this, it is better to us requestAnimationFrame instead of just setting an interval.
 function animate() {
 	requestAnimationFrame( animate );
+	updateCamera();
 
 	// cube.rotation.x += 0.005;
 	// cube.rotation.y += 0.005;
