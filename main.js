@@ -35,10 +35,11 @@ const controls = new OrbitControls(camera, renderer.domElement);
 // // Once both are defined, 'Mesh' is then created to combine both the geometry and the material.
 // // Now that the object is defined, add it to the scene so that it can be drawn by the renderer.
 // // Changing the position of the camera may be necessary based on how the object is added to the scene.
-// const cubeGeometry = new THREE.BoxGeometry( 1, 1, 1 );
-// const cubeMaterial = new THREE.MeshStandardMaterial( { color: 0xffffff } );
-// const cube = new THREE.Mesh( cubeGeometry, cubeMaterial );
-// scene.add( cube );
+const cubeGeometry = new THREE.BoxGeometry( 50, 1, 50 );
+const cubeMaterial = new THREE.MeshStandardMaterial( { color: 0xffffff } );
+const cube = new THREE.Mesh( cubeGeometry, cubeMaterial );
+cube.position.set(0, -7, 0);
+scene.add( cube );
 
 
 //================================================================================//
@@ -104,6 +105,35 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('keyup', (event) => {
     keysPressed[event.key] = false;
 });
+
+function updateCamera() {
+    let speed = 0.1; // Adjust the speed as needed
+
+    if (keysPressed['w']) {
+        // Move forward
+        camera.translateZ(-speed);
+    }
+    if (keysPressed['s']) {
+        // Move backward
+        camera.translateZ(speed);
+    }
+    if (keysPressed['a']) {
+        // Move left
+        camera.translateX(-speed);
+    }
+    if (keysPressed['d']) {
+        // Move right
+        camera.translateX(speed);
+    }
+    if (keysPressed['e']) {
+        // Move up
+        camera.translateY(speed);
+    }
+    if (keysPressed['q']) {
+        // Move down
+        camera.translateY(-speed);
+    }
+}
 //================================================================================//
 
 //======================================== animate function ========================================//
@@ -113,6 +143,7 @@ document.addEventListener('keyup', (event) => {
 // Because of this, it is better to us requestAnimationFrame instead of just setting an interval.
 function animate() {
 	requestAnimationFrame( animate );
+	updateCamera();
 
 	// cube.rotation.x += 0.005;
 	// cube.rotation.y += 0.005;
