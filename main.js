@@ -3,6 +3,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'; // Allows for i
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'; // Allows for camera manipulation based on mouse events.
 import WebGL from 'three/addons/capabilities/WebGL.js'; // Allows the program to check if WebGL is available for use on the users browser.
 
+import { noise } from 'noisejs';
 
 //======================================== Creating a scene ========================================//
 // The Scene is required when defining what is what and where it goes on the screen.
@@ -84,13 +85,13 @@ var directionalLight1 = new THREE.DirectionalLight(0xffffff, 10); // 0xffffff is
 directionalLight1.position.set(0, 3, 0); // Set the position of the light
 scene.add(directionalLight1);
 
-// var directionalLight2 = new THREE.DirectionalLight(0xffffff, 1); // 0xffffff is white color, 1 is intensity
-// directionalLight2.position.set(0, -3, 0); // Set the position of the light
-// directionalLight2.rotation.set(0, 180, 0);
-// scene.add(directionalLight2);
+var directionalLight2 = new THREE.DirectionalLight(0xffffff, 1); // 0xffffff is white color, 1 is intensity
+directionalLight2.position.set(0, -3, 0); // Set the position of the light
+directionalLight2.rotation.set(0, 180, 0);
+scene.add(directionalLight2);
 
-// const light = new THREE.AmbientLight( 0x404040 , 5); // soft white light
-// scene.add( light );
+const light = new THREE.AmbientLight( 0x404040 , 5); // soft white light
+scene.add( light );
 // camera.position.set( 0, 0, 100 );
 // camera.lookAt( 0, 0, 0 );
 //================================================================================//
